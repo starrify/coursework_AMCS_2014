@@ -41,7 +41,7 @@ def _test_plot(domain, func_base, func_fit, data_set, legend_title=''):
         marker='o', linestyle='None', label='Sample points')
     plt.legend(title=legend_title)
 
-    margin = 1
+    margin = 0.5
     plt.xlim(numpy.amin(domain) - margin, numpy.amax(domain) + margin)
     plt.ylim(numpy.amin(base_range) - margin, numpy.amax(fit_range) + margin)
     fig.show()
@@ -50,7 +50,7 @@ def _test_plot(domain, func_base, func_fit, data_set, legend_title=''):
 
 def _test_fit(N, M, log_lambda, gauss_scale, nsample):
     func_base = numpy.sin
-    domain_l, domain_r = 0, 2 * numpy.pi
+    domain_l, domain_r = 0 * numpy.pi, 2 * numpy.pi
     domain = numpy.linspace(domain_l, domain_r, num=nsample)
     data_x_gen = lambda N: numpy.linspace(domain_l, domain_r, num=N)
     data_y_gen = lambda data_x: [func_base(x) for x in data_x]
@@ -71,7 +71,7 @@ def _test_fit(N, M, log_lambda, gauss_scale, nsample):
 
 def _test():
     numpy.random.seed(0xdeadbeef)
-    gauss_scale = 0.09
+    gauss_scale = 0.16
     nsample = 256
     _test_fit(10, 3, None, gauss_scale, nsample)
     _test_fit(10, 9, None, gauss_scale, nsample)
