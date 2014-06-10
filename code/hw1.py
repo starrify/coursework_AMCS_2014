@@ -24,7 +24,7 @@ def polynomial_fitting_least_square(degree, data_set, log_lambda=None):
         _lambda = numpy.exp(log_lambda)
         XTX += numpy.identity(M + 1) * _lambda
     A = XTX.getI() * X.getT() * Y
-    return A.A1
+    return A.getA1()
 
 
 # For testing purpose only
