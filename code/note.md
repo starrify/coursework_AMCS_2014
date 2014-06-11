@@ -12,3 +12,9 @@ curve passes through the very last point.
 
 3. Careful with the domain: calculation with degree 9 polynomials may easily
 introduce large error.
+
+
+HW2
+------
+
+1. Still not obtaining satisfying results.
