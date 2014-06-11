@@ -65,11 +65,11 @@ def _test():
 
     fig = plt.figure()
     grids = gridspec.GridSpec(
-        len(sample_x), len(sample_y),
+        len(sample_y), len(sample_x),
         wspace=0.1, hspace=0.1)
-    for xid in range(len(sample_x)):
-        for yid in range(len(sample_y)):
-            flatid = xid * len(sample_y) + yid
+    for yid in range(len(sample_y)):
+        for xid in range(len(sample_x)):
+            flatid = yid * len(sample_x) + xid
             figid = sample_idx[flatid]
             raw = X[figid]
             raw = raw.reshape(32, 32)
