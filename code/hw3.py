@@ -26,7 +26,7 @@ def gaussian_dist_2D(
     return ret
 
 
-def EM_2D(data, comp_size, max_iter=256, diff_goal=1e-6, report_step=None):
+def EM_2D(data, comp_size, max_iter=256, epsilon=1e-6, report_step=None):
     data_size, data_dim = data.shape
     assert(data_dim == 2)
     p_assign = numpy.zeros((data_size, comp_size))
@@ -67,7 +67,7 @@ def EM_2D(data, comp_size, max_iter=256, diff_goal=1e-6, report_step=None):
         if report_step and _i % report_step == 0:
             print('Iteration %d: diff=%e' % (_i, diff))
             pass
-        if diff < diff_goal:
+        if diff < epsilon:
             break
 
     return p, mu, sigma
@@ -79,12 +79,13 @@ def _test():
     numpy.random.seed(0xdeadbeef)
 
     sample_size = 1000
-    param_p = [0.4, 0.6]
+    param_p = [0.2, 0.5, 0.3]
     param_size = [int(sample_size * p) for p in param_p]
-    param_mu = [numpy.array(mu) for mu in [(0, 0), (4, 1)]]
+    param_mu = [numpy.array(mu) for mu in [(0, 0), (4, 1), (-2, 3)]]
     param_sigma = [numpy.array(sigma) for sigma in [
         ((1, 0.7), (0.7, 1)),
         ((1.2, -0.4), (-0.4, 1.2)),
+        ((1, 0.2), (0.2, 1)),
         ]]
     comp_size = len(param_size)
 
