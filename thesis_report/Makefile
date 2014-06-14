@@ -33,5 +33,5 @@ ${OUTPUT_PDF}: clean *.tex
 
 clean:
 	rm -f ${OUTPUT_PDF}
-	find . \( -name "*.aux" -o -name "*.toc" -o -name "*.bbl" -o -name "*.blg" \) |	\
-		xargs rm -f
+	find . \( -name "*.aux" -o -name "*.toc" -o -name "*.bbl" -o -name "*.blg" \
+		-o -name "*.log" -o -name "*.out" \) | xargs rm -f
