@@ -1,0 +1,106 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{times}                       % 使用 Times New Roman 字体
+\usepackage{CJK,CJKnumb,CJKulem}         % 中文支持宏包
+\usepackage{color}                       % 支持彩色
+
+\usepackage{comment}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage[top=25.4mm, bottom=25.4mm, left=31.7mm, right=32.2mm]{geometry}
+
+%页面设置
+\begin{CJK*}{UTF8}{wqyzh}
+%\theoremstyle{definition}
+%\newtheoremstyle{mythm}{1.5ex plus 1ex minus .2ex}{1.5ex plus 1ex minus .2ex}
+%   {\kai}{\parindent}{\wqyzh\bfseries}{}{1em}{}
+\newtheoremstyle{mythm}{1ex}{1ex}%定理环境的上下间距.
+{\CJKfamily{wqyzh}}{\parindent}{\CJKfamily{wqyzh} \bf}{}{1em}{}%定理内容为宋体, 缩进, 定理名称为黑粗体
+\theoremstyle{mythm}%设置定理环境
+\newtheorem{thm}{定理~}[section]
+\newtheorem{lem}[thm]{引理~}
+\newtheorem{pro}[thm]{性质~}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{prop}[thm]{命题~}
+\newtheorem{ques}[thm]{问题~}
+\newtheorem{cor}[thm]{推论~}
+\newtheorem{de}[thm]{定义~}
+\newtheorem{rem}[thm]{注记~}
+\numberwithin{equation}{section}
+\end{CJK*}
+\renewcommand\refname{\CJKfamily{wqyzh}参考文献}
+%\renewcommand{\abstractname}{摘要}
+%%%%%%%%%%%%%%%%下面几行用于改变证明环境的定义
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+\pushQED{\qed}%
+\normalfont \topsep6\p@\@plus6\p@ \labelsep1em\relax
+\trivlist
+\item[\hskip\labelsep\indent
+\bfseries #1]\ignorespaces
+}{%
+\popQED\endtrivlist\@endpefalse
+}
+\makeatother
+%%%%%%%%%%%%%%(http://latex.yo2.cn)
+\renewcommand{\proofname}{\CJKfamily{wqyzh}证明}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+%\titleformat{\section}{\CJKfamily{wqyzh} }{\arabic{section}{1em}{}
+\titleformat{\section}{\large \bf \CJKfamily{wqyzh} }{{\bf \thesection\space}}{0pt}{}
+
+\begin{document}
+%\setlength{\baselineskip}{1ex}%设置行距
+\setlength{\abovedisplayskip}{1ex} %设置公式上边间距
+\setlength{\belowdisplayskip}{1ex} %设置公式下边间距
+\begin{CJK*}{UTF8}{wqyzh}
+
+\author{Author (ID)}                                 % 作者
+\title{计算机应用数学课程论文 \LaTeX 模板}              % 题目
+\maketitle                                           % 生成标题
+
+\section{引言}
+TEX是由图灵奖得主Knuth编写的计算机程序，用于文章和数学公式的排版。
+1977年Knuth开始编写TEX排版系统引擎的时候，
+是为了探索当时正开始进入出版工业的数字印刷设备的潜力。他特别希望能因此扭转那种排版质量下降的趋势，
+使自己写的{\CJKfamily{wqyzh}书和文章}免受其害。
+
+%\clearpage % 换页，\newpage也可以，推荐\clearpage
+我们现在使用的TEX系统是在1982年发布的，1989年又略作改进，增进了
+对8字节字符和多语言的支持。TEX以具有优异的稳定性，可以在各种不同
+类型的计算机上运行，以及几乎没有错误而著称。
+
+
+\section{方法概述}
+%\CJKfamily{fs}
+%中文部分，可以中英文混合
+%
+%\CJKfamily{wqyzh}
+%中文部分，可以中英文混合
+%
+%\CJKfamily{li}
+%中文部分，可以中英文混合
+%
+%\CJKfamily{kai}
+%中文部分，可以中英文混合
+%
+%\CJKfamily{wqyzh}
+%中文部分，可以中英文混合
+
+\section{实验结果}
+
+\section{小结与讨论}
+
+\begin{thebibliography}{MM}
+\addtolength{\itemsep}{-0.5em}
+\begin{small}
+\bibitem{no} text
+\end{small}
+\end{thebibliography}
+\newpage
+\end{CJK*}
+\end{document}
