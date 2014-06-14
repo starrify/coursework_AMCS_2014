@@ -23,8 +23,8 @@ tmp_font_cleanup:
 	rm -f ${FONT_DIR_DST}
 
 ${OUTPUT_PDF}: clean *.tex
-	$(MAKE) tmp_font_cleanup
-	$(MAKE) tmp_font_prepare
+	#$(MAKE) tmp_font_cleanp
+	#$(MAKE) tmp_font_prepare
 	pdflatex ${TEX_SRC} 
 	#find data -name "*.tex" | sed -e "s/\.tex//g" | parallel --no-notice bibtex || true
 	bibtex ${TEX_SRC_PREFIX} || true
