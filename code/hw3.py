@@ -5,6 +5,7 @@
 # COPYLEFT, ALL WRONGS RESERVED.
 
 import functools
+import operator
 import numpy
 import scipy.linalg
 import scipy.stats
@@ -64,11 +65,17 @@ def EM_2D(data, comp_size, max_iter=256, epsilon=1e-6, report_step=None):
         diff = sum([
             numpy.linalg.norm(x - y)
             for x, y in zip(old_params, params)])
-        if report_step and _i % report_step == 0:
+
+        def report_status():
             print('Iteration %d: diff=%e' % (_i, diff))
             pass
+
         if diff < epsilon:
+            report_status()
             break
+        if report_step and _i % report_step == 0:
+            report_status()
+            pass
 
     return p, mu, sigma
 
@@ -87,13 +94,21 @@ def _test():
         ((1.2, -0.4), (-0.4, 1.2)),
         ((1, 0.2), (0.2, 1)),
         ]]
-    comp_size = len(param_size)
 
+    # Schwartzian transform
+    param_p, param_size, param_mu, param_sigma = zip(*sorted(
+        zip(param_p, param_size, param_mu, param_sigma),
+        key=operator.itemgetter(0),
+        reverse=True))
+
+    comp_size = len(param_size)
     grouped_data = [
         gaussian_dist_2D(mu, sigma, size)
         for size, mu, sigma in zip(param_size, param_mu, param_sigma)]
     est_p, est_mu, est_sigma = EM_2D(
         numpy.vstack(grouped_data), comp_size, report_step=5)
+
+    print('sample size: %d' % sample_size)
 
     def tmp_print(msg_0, msg_1, data):
         print(msg_0)
@@ -102,6 +117,7 @@ def _test():
             for x in d:
                 print(x)
         pass
+
     tmp_print(
         '\nGround truth:',
         ['p:', 'mu:', 'sigma:'],
